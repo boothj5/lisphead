@@ -40,6 +40,7 @@
 (defun make-game (player-names num-cards)
     (let ((players nil)
           (deck (create-decks (list-length player-names) num-cards)))
+        (random-shuffle deck)
         (dolist (name player-names)
             (setf players (cons (make-player name num-cards) players)))
         (list players deck num-cards)))
@@ -62,3 +63,9 @@
                 (add-to-hand player (vector-pop deck))
                 (add-to-face-up player (vector-pop deck))
                 (add-to-face-down player (vector-pop deck))))))
+
+(defun random-shuffle (seq)
+    (map-into seq #'car
+        (sort (map 'vector (lambda (x) 
+            (cons x (random 1d0))) seq)
+                #'< :key #'cdr)))

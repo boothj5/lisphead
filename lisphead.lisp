@@ -23,12 +23,10 @@
 (setf *player-names* (request-player-names *num-players*))
 (setf *game* (make-game *player-names* *num-cards-each*))
 
-(princ "Created game")
-(newline)
 
 (deal *game*)
 
-(newline)
+(newlines 100)
 (show-players (get-players *game*))
 
 
