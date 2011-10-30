@@ -11,10 +11,7 @@
 (defun newline () (format t "~%"))
 
 (defun newlines (num)
-    (loop
-        (newline)
-        (setq num (- num 1))
-        (when (eq num 0) (return))))
+    (dotimes (i 100) (newline)))
 
 (defun show-welcome-message ()
     (format t "Welcome to LispHead!~%"))
@@ -29,10 +26,7 @@
 
 (defun request-player-names (num-players)
     (setq player-names (make-array num-players :fill-pointer 0))
-    (setq i 0)
-    (loop
+    (dotimes (i num-players)
         (format t "Enter name for player ~d: " (+ i 1))
-        (vector-push (read) player-names)
-        (setq i (+ i 1))
-        (when (eq i num-players) (return player-names))))
+        (vector-push (read) player-names)))
 
