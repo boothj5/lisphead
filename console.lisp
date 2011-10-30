@@ -25,8 +25,11 @@
     (read))
 
 (defun request-player-names (num-players)
-    (let ((player-names (make-array num-players :fill-pointer 0)))
-        (dotimes (i num-players)
-            (format t "Enter name for player ~d: " (+ i 1))
-            (vector-push (read) player-names))))
+    (defvar player-names nil)
+    (defvar name "")
+    (dotimes (i num-players)
+        (format t "Enter name for player ~d: " (+ i 1))
+        (setf name (read))
+        (setf player-names (cons name player-names)))
+    player-names)
 
