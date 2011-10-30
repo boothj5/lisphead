@@ -12,10 +12,10 @@
 (newlines 100)
 (show-welcome-message)
 
-(setq *num-players* (request-num-players))
-(setq *num-cards-each* (request-num-cards))
-(setq player-names (request-player-names *num-players*))
-(setq deck (create-decks *num-players* *num-cards-each*))
+(setf *num-players* (request-num-players))
+(setf *num-cards-each* (request-num-cards))
+(setf player-names (request-player-names *num-players*))
+(setf deck (create-decks *num-players* *num-cards-each*))
 
 (dotimes (i (length deck))
     (princ (show-card (elt deck i)))
