@@ -6,7 +6,9 @@
              :get-hand
              :get-face-up
              :get-face-down
-             :add-to-hand))
+             :add-to-hand
+             :add-to-face-up
+             :add-to-face-down))
 (in-package :com.boothj5.lisphead.player)
 
 (defun make-player (name num-cards)
@@ -29,3 +31,9 @@
 
 (defun add-to-hand (player card)
     (vector-push card (get-hand player)))
+
+(defun add-to-face-up (player card)
+    (vector-push card (get-face-up player)))
+
+(defun add-to-face-down (player card)
+    (vector-push card (get-face-down player)))
