@@ -13,33 +13,18 @@
     (+ div add))
 
 (newlines 100)
-
 (show-welcome-message)
 
 (setq num-players (request-num-players))
 (setq num-cards-each (request-num-cards))
-
 (setq player-names (request-player-names num-players))
-
 (setq decks-needed (calc-decks-needed num-players num-cards-each))
-(format t "Num decks required = ~d~%" decks-needed)
-
-(setq ten-diamonds '(10 3))
-
-(newline)
-
-(princ (show-card ten-diamonds))
-
-(setq deck (create-deck))
-
-(princ deck)
-
-(newline)
+(setq deck (create-decks decks-needed))
 
 (setq i 0)
 (loop
     (princ (show-card (elt deck i)))
     (newline)
     (setq i (+ i 1))
-    (when (eq i 52) (return)))
+    (when (eq i (length deck)) (return)))
 
