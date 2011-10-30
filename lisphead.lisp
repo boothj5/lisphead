@@ -25,6 +25,9 @@
 (dolist (name *player-names*)
     (setf *players* (cons (make-player name *num-cards-each*) *players*)))
 
+(add-to-hand (car *players*) (list 10 2))
+
 (newline)
-(dolist (player *players*)
-    (format t "Name : ~s~%" (get-name player)))
+(show-players *players*)
+
+

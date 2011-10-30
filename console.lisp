@@ -1,11 +1,14 @@
+(load "card.lisp")
+(load "player.lisp")
 (defpackage :com.boothj5.lisphead.console
-    (:use :common-lisp)
+    (:use :common-lisp :com.boothj5.lisphead.card :com.boothj5.lisphead.player)
     (:export :newline 
              :newlines 
              :show-welcome-message
              :request-num-players
              :request-num-cards
-             :request-player-names))
+             :request-player-names
+             :show-players))
 (in-package :com.boothj5.lisphead.console)
 
 (defun newline () (format t "~%"))
@@ -32,4 +35,27 @@
         (setf name (read))
         (setf player-names (cons name player-names)))
     player-names)
+
+(defun show-player (player)
+    (format t "~s~%" (get-name player))
+    (format t "Hand      : ")
+    (dotimes (i (length (get-hand player)))
+        (princ (show-card (elt (get-hand player) i)))
+        (princ ", "))
+    (newline)
+    (format t "face up   : ")
+    (dotimes (i (length (get-face-up player)))
+        (princ (show-card (elt (get-face-up player) i)))
+        (princ ", "))
+    (newline)
+    (format t "face down : ")
+    (dotimes (i (length (get-face-down player)))
+        (princ (show-card (elt (get-face-down player) i)))
+        (princ ", "))
+    (newline))
+
+(defun show-players (players)
+    (dolist (player players)
+        (show-player player)
+        (newline)))
 
