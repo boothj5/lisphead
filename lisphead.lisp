@@ -6,8 +6,11 @@
           :com.boothj5.lisphead.card))
 (in-package :com.boothj5.lisphead)
 
-(defun calc-cards-needed (num-players num-cards-each)
-    (* num-players num-cards-each 3))
+(defun calc-decks-needed (num-players num-cards-each)
+    (setq cards-needed (* num-players num-cards-each 3))
+    (setq div (floor cards-needed 52))
+    (setq add (if (> (mod cards-needed 52) 0) 1 0))
+    (+ div add))
 
 (newlines 100)
 
@@ -18,10 +21,25 @@
 
 (setq player-names (request-player-names num-players))
 
-(format t "Num cards required = ~d~%" (calc-cards-needed num-players num-cards-each))
+(setq decks-needed (calc-decks-needed num-players num-cards-each))
+(format t "Num decks required = ~d~%" decks-needed)
 
 (setq ten-diamonds '(10 3))
 
 (newline)
 
 (princ (show-card ten-diamonds))
+
+(setq deck (create-deck))
+
+(princ deck)
+
+(newline)
+
+(setq i 0)
+(loop
+    (princ (show-card (elt deck i)))
+    (newline)
+    (setq i (+ i 1))
+    (when (eq i 52) (return)))
+
