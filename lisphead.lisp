@@ -17,6 +17,8 @@
     (format t "Please enter number of cards each: ")
     (read))
 
+(defun calc-cards-needed (num-players num-cards-each)
+    (* num-players num-cards-each 3))
 
 (newlines 100)
 
@@ -34,8 +36,5 @@
     (setq i (+ i 1))
     (when (eq i num-players) (return)))
 
-(setq i 0)
-(loop
-    (format t "Player ~d name = ~s~%" (+ i 1) (elt player-names i))
-    (setq i (+ i 1))
-    (when (eq i num-players) (return)))
+(format t "Num cards required = ~d~%" (calc-cards-needed num-players num-cards-each))
+
