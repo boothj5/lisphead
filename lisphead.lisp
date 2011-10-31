@@ -19,5 +19,5 @@
 (setf *game* (make-game *player-names* *num-cards-each*))
 (deal *game*)
 (newlines 100)
-(show-players (get-players *game*))
+(show-players (getf *game* :players))
 
