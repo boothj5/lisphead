@@ -21,3 +21,8 @@
 (newlines 100)
 (show-players (getf *game* :players))
 
+(dolist (player (getf *game* :players))
+    (let ((swap (request-swap player)))
+        (loop until (not swap) do
+            (princ "You want to swap")
+            (setf swap (request-swap-more player)))))

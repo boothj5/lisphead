@@ -8,6 +8,8 @@
              :request-num-players
              :request-num-cards
              :request-player-names
+             :request-swap
+             :request-swap-more
              :show-players))
 (in-package :com.boothj5.lisphead.console)
 
@@ -26,6 +28,16 @@
 (defun request-num-cards ()
     (format t "Please enter number of cards each: ")
     (read))
+
+(defun request-swap (player)
+    (newlines 100)
+    (show-player player)
+    (y-or-n-p "Do you want to swap cards? "))
+
+(defun request-swap-more (player)
+    (newlines 100)
+    (show-player player)
+    (y-or-n-p "Do you want to swap more cards? "))
 
 (defun request-player-names (num-players)
     (defvar player-names nil)
