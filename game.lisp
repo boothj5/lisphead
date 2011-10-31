@@ -21,7 +21,7 @@
         (dotimes (suit (length +suits+))
             (setf rank 2)
             (loop
-                (vector-push (cons rank (cons suit ())) deck)
+                (vector-push (make-card rank suit) deck)
                 (incf rank)
                 (when (> rank 14) (return))))
         deck))
