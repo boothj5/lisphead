@@ -2,10 +2,6 @@
 (defpackage :com.boothj5.lisphead.player
     (:use :common-lisp)
     (:export :make-player 
-             :get-name
-             :get-hand
-             :get-face-up
-             :get-face-down
              :add-to-hand
              :add-to-face-up
              :add-to-face-down))
@@ -15,25 +11,13 @@
     (let ((hand (make-array num-cards :fill-pointer 0))
           (face-up (make-array num-cards :fill-pointer 0))
           (face-down (make-array num-cards :fill-pointer 0)))
-        (list name hand face-up face-down )))
-
-(defun get-name (player)
-    (car player))
-
-(defun get-hand (player)
-    (car (cdr player)))
-
-(defun get-face-up (player)
-    (car (cdr (cdr player))))
-
-(defun get-face-down (player)
-    (car (cdr (cdr (cdr player)))))
+        (list :player-name name :hand hand :face-up face-up :face-down face-down)))
 
 (defun add-to-hand (player card)
-    (vector-push card (get-hand player)))
+    (vector-push card (getf player :hand)))
 
 (defun add-to-face-up (player card)
-    (vector-push card (get-face-up player)))
+    (vector-push card (getf player :face-up)))
 
 (defun add-to-face-down (player card)
-    (vector-push card (get-face-down player)))
+    (vector-push card (getf player :face-down)))
