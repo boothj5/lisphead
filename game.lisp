@@ -7,7 +7,7 @@
 (in-package :com.boothj5.lisphead.game)
 
 (defconstant +deck-size+ 52)
-
+(setf *random-state* (make-random-state t))
 (defun calc-decks-needed (num-players num-cards-each)
     (let* ((cards-needed (* num-players num-cards-each 3))
            (div (floor cards-needed +deck-size+))
