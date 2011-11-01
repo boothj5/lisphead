@@ -1,9 +1,11 @@
 (load "console.lisp")
 (load "game.lisp")
+(load "player.lisp")
 (defpackage :com.boothj5.lisphead
     (:use :common-lisp
           :com.boothj5.lisphead.console
-          :com.boothj5.lisphead.game))
+          :com.boothj5.lisphead.game
+          :com.boothj5.lisphead.player))
 (in-package :com.boothj5.lisphead)
 
 (defvar *num-players*)
@@ -22,7 +24,11 @@
 (show-players (getf *game* :players))
 
 (dolist (player (getf *game* :players))
-    (let ((swap (request-swap player)))
+    (let ((swap (request-swap player))
+          (hand)
+          (face-up))
         (loop until (not swap) do
-            (princ "You want to swap")
+            (setf hand (request-hand-swap))
+            (setf face-up (request-face-up-swap))
+            (do-swap player hand face-up)
             (setf swap (request-swap-more player)))))

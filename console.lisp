@@ -10,6 +10,8 @@
              :request-player-names
              :request-swap
              :request-swap-more
+             :request-hand-swap
+             :request-face-up-swap
              :show-players))
 (in-package :com.boothj5.lisphead.console)
 
@@ -28,6 +30,14 @@
 (defun request-num-cards ()
     (format t "Please enter number of cards each: ")
     (read))
+
+(defun request-hand-swap ()
+    (format t "Please choose a hand card: ")
+    (- (read) 1))
+
+(defun request-face-up-swap ()
+    (format t "Please choose a face up card: ")
+    (- (read) 1))
 
 (defun request-swap (player)
     (newlines 100)

@@ -4,7 +4,8 @@
     (:export :make-player 
              :add-to-hand
              :add-to-face-up
-             :add-to-face-down))
+             :add-to-face-down
+             :do-swap))
 (in-package :com.boothj5.lisphead.player)
 
 (defun make-player (name num-cards)
@@ -21,3 +22,12 @@
 
 (defun add-to-face-down (player card)
     (vector-push card (getf player :face-down)))
+
+(defun do-swap (player hand-choice face-up-choice)
+    (let ((temp (elt (getf player :face-up) face-up-choice)))
+        (setf 
+            (elt (getf player :face-up) face-up-choice) 
+            (elt (getf player :hand) hand-choice))
+        (setf 
+            (elt (getf player :hand) hand-choice) 
+            temp)))
