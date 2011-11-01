@@ -3,7 +3,8 @@
 (defpackage :com.boothj5.lisphead.game
     (:use :common-lisp :com.boothj5.lisphead.player :com.boothj5.lisphead.card)
     (:export :make-game 
-             :deal))
+             :deal
+             :get-current-player))
 (in-package :com.boothj5.lisphead.game)
 
 (defconstant +deck-size+ 52)
@@ -42,7 +43,10 @@
         (random-shuffle deck)
         (dolist (name player-names)
             (setf players (cons (make-player name num-cards) players)))
-        (list :players players :deck deck :num-cards num-cards)))
+        (list :players players 
+              :current-player 0 
+              :deck deck 
+              :num-cards num-cards)))
            
 (defun deal (game)
     (let ((players (getf game :players))
@@ -59,3 +63,7 @@
         (sort (map 'vector (lambda (x) 
             (cons x (random 1d0))) seq)
                 #'< :key #'cdr)))
+
+(defun get-current-player (game)
+    (elt (getf game :players) (getf game :current-player))) 
+    

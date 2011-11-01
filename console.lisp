@@ -12,6 +12,7 @@
              :request-swap-more
              :request-hand-swap
              :request-face-up-swap
+             :show-player
              :show-players))
 (in-package :com.boothj5.lisphead.console)
 
