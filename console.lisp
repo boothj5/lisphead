@@ -1,19 +1,4 @@
-(load "card.lisp")
-(load "player.lisp")
-(defpackage :com.boothj5.lisphead.console
-    (:use :common-lisp :com.boothj5.lisphead.card :com.boothj5.lisphead.player)
-    (:export :newline 
-             :newlines 
-             :show-welcome-message
-             :request-num-players
-             :request-num-cards
-             :request-player-names
-             :request-swap
-             :request-swap-more
-             :request-hand-swap
-             :request-face-up-swap
-             :show-player
-             :show-players))
+(load "packages.lisp")
 (in-package :com.boothj5.lisphead.console)
 
 (defun newline () (format t "~%"))

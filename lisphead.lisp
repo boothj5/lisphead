@@ -1,11 +1,5 @@
-(load "console.lisp")
-(load "game.lisp")
-(load "player.lisp")
-(defpackage :com.boothj5.lisphead
-    (:use :common-lisp
-          :com.boothj5.lisphead.console
-          :com.boothj5.lisphead.game
-          :com.boothj5.lisphead.player))
+(load "packages.lisp")
+(load "load.lisp")
 (in-package :com.boothj5.lisphead)
 
 (defun main ()

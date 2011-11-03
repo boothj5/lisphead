@@ -1,9 +1,4 @@
-(defpackage :com.boothj5.lisphead.card
-    (:use :common-lisp)
-    (:export :+suits+ 
-             :+ranks+
-             :make-card
-             :show-card))
+(load "packages.lisp")
 (in-package :com.boothj5.lisphead.card)
 
 (defconstant +suits+ '("SPADES" "HEARTS" "CLUBS" "DIAMONDS"))
@@ -18,3 +13,9 @@
         " of " 
         (elt +suits+ (getf card :suit))))
 
+(defun lowest-card (cards)
+    (let ((lowest (elt cards 0)))
+        (dotimes (i (length cards))
+            (if (< (getf (elt cards i) :rank) (getf lowest :rank)) 
+                (setf lowest (elt cards i))))
+        lowest))

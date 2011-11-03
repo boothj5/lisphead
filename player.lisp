@@ -1,11 +1,4 @@
-(load "card.lisp")
-(defpackage :com.boothj5.lisphead.player
-    (:use :common-lisp)
-    (:export :make-player 
-             :add-to-hand
-             :add-to-face-up
-             :add-to-face-down
-             :do-swap))
+(load "packages.lisp")
 (in-package :com.boothj5.lisphead.player)
 
 (defun make-player (name num-cards)
@@ -31,3 +24,6 @@
         (setf 
             (elt (getf player :hand) hand-choice) 
             temp)))
+
+(defun lowest-hand-card (player)
+    (lowest-card (getf player :hand)))

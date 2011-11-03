@@ -1,10 +1,4 @@
-(load "player.lisp")
-(load "card.lisp")
-(defpackage :com.boothj5.lisphead.game
-    (:use :common-lisp :com.boothj5.lisphead.player :com.boothj5.lisphead.card)
-    (:export :make-game 
-             :deal
-             :get-current-player))
+(load "packages.lisp")
 (in-package :com.boothj5.lisphead.game)
 
 (defconstant +deck-size+ 52)
