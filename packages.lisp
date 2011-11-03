@@ -7,11 +7,13 @@
              :show-card))
 
 (defpackage :com.boothj5.lisphead.player
-    (:use :common-lisp)
+    (:use :common-lisp
+          :com.boothj5.lisphead.card)
     (:export :make-player
              :add-to-hand
              :add-to-face-up
              :add-to-face-down
+             :lowest-hand-card
              :do-swap))
 
 (defpackage :com.boothj5.lisphead.console
