@@ -16,6 +16,6 @@
 (defun lowest-card (cards)
     (let ((lowest (elt cards 0)))
         (dotimes (i (length cards))
-            (if (< (getf (elt cards i) :rank) (getf lowest :rank)) 
+            (when (< (getf (elt cards i) :rank) (getf lowest :rank)) 
                 (setf lowest (elt cards i))))
         lowest))

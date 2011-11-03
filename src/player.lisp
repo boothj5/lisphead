@@ -18,12 +18,10 @@
 
 (defun do-swap (player hand-choice face-up-choice)
     (let ((temp (elt (getf player :face-up) face-up-choice)))
-        (setf 
-            (elt (getf player :face-up) face-up-choice) 
-            (elt (getf player :hand) hand-choice))
-        (setf 
-            (elt (getf player :hand) hand-choice) 
-            temp)))
+        (setf (elt (getf player :face-up) face-up-choice) 
+              (elt (getf player :hand) hand-choice))
+        (setf (elt (getf player :hand) hand-choice) 
+              temp)))
 
 (defun lowest-hand-card (player)
     (lowest-card (getf player :hand)))
