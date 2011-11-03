@@ -1,8 +1,8 @@
-(load "lisp-unit.lisp")
+(load "tests/lisp-unit.lisp")
 (load "packages.lisp")
 (load "load.lisp")
-(load "test-packages.lisp")
-(load "test-load.lisp")
+(load "tests/packages.lisp")
+(load "tests/load.lisp")
 (defpackage :com.boothj5.lisphead.test-suite
     (:use :common-lisp :lisp-unit
           :com.boothj5.lisphead.test-card

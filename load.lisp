@@ -1,5 +1,5 @@
-(load "card.lisp")
-(load "player.lisp")
-(load "console.lisp")
-(load "game.lisp")
+(load "src/card.lisp")
+(load "src/player.lisp")
+(load "src/console.lisp")
+(load "src/game.lisp")
 
