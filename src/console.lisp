@@ -6,6 +6,9 @@
 (defun newlines (num)
     (dotimes (i num) (newline)))
 
+(defun clearscreen ()
+    (newlines 100))
+
 (defun show-welcome-message ()
     (format t "Welcome to LispHead!~%"))
 
@@ -26,12 +29,12 @@
     (- (read) 1))
 
 (defun request-swap (player)
-    (newlines 100)
+    (clearscreen)
     (show-player player)
     (y-or-n-p "Do you want to swap cards? "))
 
 (defun request-swap-more (player)
-    (newlines 100)
+    (clearscreen)
     (show-player player)
     (y-or-n-p "Do you want to swap more cards? "))
 
@@ -44,23 +47,18 @@
         (setf player-names (cons name player-names)))
     player-names)
 
-(defun show-player (player)
-    (format t "~s~%" (getf player :player-name))
-    (format t "Hand      : ")
-    (dotimes (i (length (getf player :hand)))
-        (princ (show-card (elt (getf player :hand) i)))
-        (princ ", "))
-    (newline)
-    (format t "face up   : ")
-    (dotimes (i (length (getf player :face-up)))
-        (princ (show-card (elt (getf player :face-up) i)))
-        (princ ", "))
-    (newline)
-    (format t "face down : ")
-    (dotimes (i (length (getf player :face-down)))
-        (princ (show-card (elt (getf player :face-down) i)))
+(defun show-cards (name cards)
+    (format t name)
+    (dotimes (i (hand-size cards))
+        (princ (show-card (get-card cards i)))
         (princ ", "))
     (newline))
+
+(defun show-player (player)
+    (format t "~s~%" (getf player :player-name))
+    (show-cards "Hand      : " (getf player :hand))
+    (show-cards "Face up   : " (getf player :face-up))
+    (show-cards "Face down : " (getf player :face-down)))
 
 (defun show-players (players)
     (dolist (player players)

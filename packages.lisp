@@ -3,12 +3,29 @@
     (:export :+suits+
              :+ranks+
              :make-card
-             :lowest-card
              :show-card))
+
+(defpackage :com.boothj5.lisphead.hand
+    (:use :common-lisp
+          :com.boothj5.lisphead.card)
+    (:export :make-hand
+             :hand-size
+             :add-to-cards
+             :get-card
+             :set-card
+             :lowest-card))
+
+(defpackage :com.boothj5.lisphead.deck
+    (:use :common-lisp
+          :com.boothj5.lisphead.card)
+    (:export :make-deck
+             :shuffle
+             :pop-deck))
 
 (defpackage :com.boothj5.lisphead.player
     (:use :common-lisp
-          :com.boothj5.lisphead.card)
+          :com.boothj5.lisphead.card
+          :com.boothj5.lisphead.hand)
     (:export :make-player
              :add-to-hand
              :add-to-face-up
@@ -17,7 +34,10 @@
              :do-swap))
 
 (defpackage :com.boothj5.lisphead.console
-    (:use :common-lisp :com.boothj5.lisphead.card :com.boothj5.lisphead.player)
+    (:use :common-lisp 
+          :com.boothj5.lisphead.card 
+          :com.boothj5.lisphead.hand
+          :com.boothj5.lisphead.player)
     (:export :newline
              :newlines
              :show-welcome-message
@@ -32,7 +52,10 @@
              :show-players))
 
 (defpackage :com.boothj5.lisphead.game
-    (:use :common-lisp :com.boothj5.lisphead.player :com.boothj5.lisphead.card)
+    (:use :common-lisp 
+          :com.boothj5.lisphead.player 
+          :com.boothj5.lisphead.deck
+          :com.boothj5.lisphead.card)
     (:export :make-game
              :deal
              :get-current-player))

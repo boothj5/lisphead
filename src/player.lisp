@@ -2,28 +2,28 @@
 (in-package :com.boothj5.lisphead.player)
 
 (defun make-player (name num-cards)
-    (let ((hand (make-array num-cards :fill-pointer 0))
-          (face-up (make-array num-cards :fill-pointer 0))
-          (face-down (make-array num-cards :fill-pointer 0)))
+    (let ((hand (make-hand num-cards))
+          (face-up (make-hand num-cards))
+          (face-down (make-hand num-cards)))
         (list :player-name name :hand hand :face-up face-up :face-down face-down)))
 
 (defun add-to-hand (player card)
-    (vector-push card (getf player :hand)))
+    (add-to-cards (getf player :hand) card))
 
 (defun add-to-face-up (player card)
-    (vector-push card (getf player :face-up)))
+    (add-to-cards (getf player :face-up) card))
 
 (defun add-to-face-down (player card)
-    (vector-push card (getf player :face-down)))
+    (add-to-cards (getf player :face-down) card))
 
 (defun do-swap (player hand-choice face-up-choice)
-    (let ((temp (elt (getf player :face-up) face-up-choice)))
-        (setf 
-            (elt (getf player :face-up) face-up-choice) 
-            (elt (getf player :hand) hand-choice))
-        (setf 
-            (elt (getf player :hand) hand-choice) 
-            temp)))
+    (let ((temp (get-card (getf player :face-up) face-up-choice)))
+        (set-card (getf player :face-up) 
+                  face-up-choice
+                  (get-card (getf player :hand) hand-choice))
+        (set-card (getf player :hand) 
+                  hand-choice
+                  temp)))
 
 (defun lowest-hand-card (player)
     (lowest-card (getf player :hand)))
