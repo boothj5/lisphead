@@ -24,6 +24,13 @@
         (set-card (getf player :hand) 
                   hand-choice
                   temp)))
-
 (defun lowest-hand-card (player)
     (lowest-card (getf player :hand)))
+
+(defun player-with-lowest-in-hand (players)
+    (let ((lowest (car players)))
+        (dolist (player players)
+            (when (< (getf (lowest-hand-card player) :rank) 
+                     (getf (lowest-hand-card lowest) :rank))
+                (setf lowest player)))
+        lowest))
