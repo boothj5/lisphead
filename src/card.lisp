@@ -20,3 +20,6 @@
             (when (< (getf (elt cards i) :rank) (getf lowest :rank)) 
                 (setf lowest (elt cards i))))
         lowest))
+
+(defun equal-rank (card1 card2)
+    (equal (getf card1 :rank) (getf card2 :rank)))

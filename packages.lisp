@@ -3,6 +3,7 @@
     (:export :+suits+
              :+ranks+
              :make-card
+             :equal-rank
              :show-card))
 
 (defpackage :com.boothj5.lisphead.hand

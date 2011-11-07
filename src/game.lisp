@@ -5,7 +5,6 @@
 
 (defun make-game (player-names num-cards)
     (let ((players nil)
-          (pile nil)
           (deck (make-deck (length player-names) num-cards)))
         (shuffle deck)
         (dolist (name player-names)
@@ -13,7 +12,8 @@
         (list :players players 
               :current-player 0 
               :deck deck
-              :pile pile 
+              :pile nil 
+              :last-move ""
               :num-cards num-cards)))
            
 (defun deal (game)
@@ -30,10 +30,23 @@
     (elt (getf game :players) (getf game :current-player))) 
     
 (defun first-move (game)
-    (let ((player (player-with-lowest-in-hand (getf game :players)))
-          (to-lay nil))
+    (let* ((player (player-with-lowest-in-hand (getf game :players)))
+           (lowest (lowest-card (getf player :hand)))
+           (to-lay nil))
         (setf (getf game :current-player) (position player (getf game :players)))
-        (push (lowest-card (getf player :hand)) to-lay)
+        (push lowest to-lay)
+        (setf (getf player :hand) 
+              (remove lowest (getf player :hand) :test #'equal))
+        (dotimes (i (hand-size (getf player :hand)))
+            (let ((card (get-card (getf player :hand) i)))
+                (when (and (equal-rank card (car to-lay)) 
+                           (not (eql card (car to-lay))))
+                    (push card to-lay))))
         (dolist (card to-lay)
-            (push card (getf game :pile)))))
-        
+            (setf (getf player :hand)
+                  (remove card (getf player :hand) :test #'equal)))
+        (dolist (card to-lay)
+            (push card (getf game :pile)))
+        (setf (getf game :last-move) 
+              (format nil "~s laid ~s" (getf player :player-name) to-lay))))
+         
