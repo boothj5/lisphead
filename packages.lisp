@@ -14,6 +14,7 @@
              :add-to-cards
              :get-card
              :set-card
+             :remove-cards
              :lowest-card))
 
 (defpackage :com.boothj5.lisphead.deck

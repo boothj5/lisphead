@@ -21,3 +21,4 @@
 (lisp-unit:run-all-tests :com.boothj5.lisphead.test-deck)
 (format t "~%~%-->Player tests:~%")
 (lisp-unit:run-all-tests :com.boothj5.lisphead.test-player)
+(format t "~%~%")

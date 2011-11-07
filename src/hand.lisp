@@ -22,3 +22,13 @@
 
 (defun set-card (hand i card)
     (setf (elt hand i) card))
+
+(defun remove-card (hand card)
+    (let ((result (remove card hand :test #'equal)))
+        result))
+
+(defun remove-cards (hand cards)
+    (let ((result hand))
+        (dolist (card cards)
+            (setf result (remove-card result card)))
+        result))
