@@ -34,6 +34,6 @@
 
 (define-test player-with-lowest-returns-correct-player
     (assert-equal "James"
-        (let* ((bob (make-bob)) (james (make-james)) (dave (make-james))
+        (let* ((bob (make-bob)) (james (make-james)) (dave (make-dave))
               (players (list bob james dave)))
             (getf (player-with-lowest-in-hand players) :player-name))))

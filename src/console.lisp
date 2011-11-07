@@ -65,3 +65,18 @@
         (show-player player)
         (newline)))
 
+(defun show-game (game)
+    (clearscreen)
+    (show-pile (getf game :pile))
+    (newline)
+    (format t "~d on deck~%" (length (getf game :deck)))
+    (newline)
+    (show-players (getf game :players)))
+
+(defun show-pile (pile)
+    (format t "Pile :~%")
+    (dolist (card pile)
+        (format t "    ")
+        (princ (show-card card))
+        (newline)))
+    

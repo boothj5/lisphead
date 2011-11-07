@@ -50,15 +50,18 @@
              :request-hand-swap
              :request-face-up-swap
              :show-player
+             :show-game
              :show-players))
 
 (defpackage :com.boothj5.lisphead.game
     (:use :common-lisp 
           :com.boothj5.lisphead.player 
           :com.boothj5.lisphead.deck
+          :com.boothj5.lisphead.hand
           :com.boothj5.lisphead.card)
     (:export :make-game
              :deal
+             :first-move
              :get-current-player))
 
 (defpackage :com.boothj5.lisphead

@@ -18,7 +18,8 @@
     (newlines 100)
     (show-players (getf *game* :players))
     (swap-cards)
-    (first-move *game*))
+    (first-move *game*)
+    (show-game *game*))
 
 (defun swap-cards ()
     (dolist (player (getf *game* :players))
