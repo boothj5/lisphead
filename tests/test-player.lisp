@@ -42,8 +42,8 @@
     (assert-true (let ((james (make-james)) 
                       (to-remove (list (make-card 4 2) (make-card 10 3))))
                     (remove-from-hand james to-remove)
-                    (and (not (find (make-card 4 2) (getf james :hand)))
-                         (not (find (make-card 10 3) (getf james :hand)))))))
+                    (and (not (find (make-card 4 2) (getf james :hand) :test #'equal))
+                         (not (find (make-card 10 3) (getf james :hand) :test #'equal))))))
 (define-test remove-from-hand-decrements-size
     (assert-equal 2 (let ((james (make-james)) 
                       (to-remove (list (make-card 4 2) (make-card 10 3))))

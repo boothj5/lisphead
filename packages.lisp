@@ -65,6 +65,7 @@
     (:export :make-game
              :deal
              :first-move
+             :add-to-pile
              :get-current-player))
 
 (defpackage :com.boothj5.lisphead

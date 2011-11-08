@@ -28,6 +28,10 @@
 
 (defun get-current-player (game)
     (elt (getf game :players) (getf game :current-player))) 
+
+(defun add-to-pile (game cards)
+    (dolist (card cards)
+        (push card (getf game :pile))))
     
 (defun first-move (game)
     (let* ((player (player-with-lowest-in-hand (getf game :players)))
@@ -41,8 +45,7 @@
                            (not (eql card (car to-lay))))
                     (push card to-lay))))
         (remove-from-hand player to-lay)
-        (dolist (card to-lay)
-            (push card (getf game :pile)))
+        (add-to-pile game to-lay)
         (setf (getf game :last-move) 
               (format nil "~s laid ~s" (getf player :player-name) to-lay))))
 

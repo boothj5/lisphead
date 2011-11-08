@@ -18,3 +18,7 @@
           :com.boothj5.lisphead.hand
           :com.boothj5.lisphead.player))
 
+(defpackage :com.boothj5.lisphead.test-game
+    (:use :common-lisp :lisp-unit
+          :com.boothj5.lisphead.card
+          :com.boothj5.lisphead.game))

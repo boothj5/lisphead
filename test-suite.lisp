@@ -8,7 +8,8 @@
           :com.boothj5.lisphead.test-card
           :com.boothj5.lisphead.test-hand
           :com.boothj5.lisphead.test-deck
-          :com.boothj5.lisphead.test-player))
+          :com.boothj5.lisphead.test-player
+          :com.boothj5.lisphead.test-game))
 (in-package :com.boothj5.lisphead.test-suite)
 
 (format t "RUNNING TESTS")
@@ -21,4 +22,6 @@
 (lisp-unit:run-all-tests :com.boothj5.lisphead.test-deck)
 (format t "~%~%-->Player tests:~%")
 (lisp-unit:run-all-tests :com.boothj5.lisphead.test-player)
+(format t "~%~%-->Game tests:~%")
+(lisp-unit:run-all-tests :com.boothj5.lisphead.test-game)
 (format t "~%~%")
