@@ -15,5 +15,6 @@
 (defpackage :com.boothj5.lisphead.test-player
     (:use :common-lisp :lisp-unit
           :com.boothj5.lisphead.card
+          :com.boothj5.lisphead.hand
           :com.boothj5.lisphead.player))
 

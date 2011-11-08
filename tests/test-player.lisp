@@ -37,3 +37,16 @@
         (let* ((bob (make-bob)) (james (make-james)) (dave (make-dave))
               (players (list bob james dave)))
             (getf (player-with-lowest-in-hand players) :player-name))))
+
+(define-test remove-from-hand-removes-from-hand
+    (assert-true (let ((james (make-james)) 
+                      (to-remove (list (make-card 4 2) (make-card 10 3))))
+                    (remove-from-hand james to-remove)
+                    (and (not (find (make-card 4 2) (getf james :hand)))
+                         (not (find (make-card 10 3) (getf james :hand)))))))
+(define-test remove-from-hand-decrements-size
+    (assert-equal 2 (let ((james (make-james)) 
+                      (to-remove (list (make-card 4 2) (make-card 10 3))))
+                    (remove-from-hand james to-remove)
+                    (hand-size (getf james :hand)))))
+                   

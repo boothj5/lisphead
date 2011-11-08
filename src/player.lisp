@@ -24,6 +24,7 @@
         (set-card (getf player :hand) 
                   hand-choice
                   temp)))
+
 (defun lowest-hand-card (player)
     (lowest-card (getf player :hand)))
 
@@ -34,3 +35,7 @@
                      (getf (lowest-hand-card lowest) :rank))
                 (setf lowest player)))
         lowest))
+
+(defun remove-from-hand (player cards)
+    (setf (getf player :hand)
+          (remove-cards (getf player :hand) cards)))

@@ -34,6 +34,7 @@
              :add-to-face-down
              :lowest-hand-card
              :player-with-lowest-in-hand
+             :remove-from-hand
              :do-swap))
 
 (defpackage :com.boothj5.lisphead.console
