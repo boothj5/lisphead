@@ -15,6 +15,7 @@
              :add-to-cards
              :get-card
              :set-card
+             :get-cards-of-same-rank
              :remove-cards
              :lowest-card))
 
