@@ -20,7 +20,10 @@
     (show-players (getf *game* :players))
     (swap-cards)
     (first-move *game*)
-    (show-game *game*))
+    (show-game *game*)
+
+    (loop until (not (continue-game *game*)) do
+        (request-move (get-current-player *game*))))
 
 (defun swap-cards ()
     (dolist (player (getf *game* :players))

@@ -37,6 +37,10 @@
              :lowest-hand-card
              :player-with-lowest-in-hand
              :remove-from-hand
+             :has-cards-in-hand
+             :has-cards-in-face-up
+             :has-cards-in-face-down
+             :has-cards
              :do-swap))
 
 (defpackage :com.boothj5.lisphead.console
@@ -55,6 +59,7 @@
              :request-swap-more
              :request-hand-swap
              :request-face-up-swap
+             :request-move
              :show-player
              :show-game
              :show-players))
@@ -70,6 +75,7 @@
              :first-move
              :add-to-pile
              :set-last-move
+             :continue-game
              :get-current-player))
 
 (defpackage :com.boothj5.lisphead
