@@ -43,7 +43,7 @@
     (defvar name "")
     (dotimes (i num-players)
         (format t "Enter name for player ~d: " (+ i 1))
-        (setf name (read))
+        (setf name (read-line))
         (setf player-names (cons name player-names)))
     player-names)
 
