@@ -2,12 +2,12 @@
 (load "load.lisp")
 (in-package :com.boothj5.lisphead)
 
-(defun main ()
-    (defvar *num-players*)
-    (defvar *num-cards-each*)
-    (defvar *player-names*)
-    (defvar *game*)
+(defvar *num-players*)
+(defvar *num-cards-each*)
+(defvar *player-names*)
+(defvar *game*)
 
+(defun main ()
     (newlines 100)
     (show-welcome-message)
     (setf *num-players* (request-num-players))

@@ -32,3 +32,17 @@
         (dolist (card cards)
             (setf result (remove-card result card)))
         result))
+
+(defun get-cards-of-same-rank (card hand)
+    (let ((to-lay nil))
+        (push card to-lay)
+        (dotimes (i (hand-size hand))
+            (let ((test-card (get-card hand i)))
+                (when (and (equal-rank test-card (car to-lay)) 
+                           (not (eql test-card (car to-lay))))
+                    (push test-card to-lay))))
+        to-lay))
+
+
+
+

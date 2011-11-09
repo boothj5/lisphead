@@ -1,10 +1,8 @@
 (load "packages.lisp")
 (in-package :com.boothj5.lisphead.console)
 
-(defun newline () (format t "~%"))
-
 (defun newlines (num)
-    (dotimes (i num) (newline)))
+    (dotimes (i num) (terpri)))
 
 (defun clearscreen ()
     (newlines 100))
@@ -52,7 +50,7 @@
     (dotimes (i (hand-size cards))
         (princ (show-card (get-card cards i)))
         (princ ", "))
-    (newline))
+    (terpri))
 
 (defun show-player (player)
     (format t "~A~%" (getf player :player-name))
@@ -63,16 +61,15 @@
 (defun show-players (players)
     (dolist (player players)
         (show-player player)
-        (newline)))
+        (terpri)))
 
 (defun show-game (game)
     (clearscreen)
     (show-pile (getf game :pile))
-    (newline)
+    (terpri)
     (format t "~d on deck~%" (length (getf game :deck)))
-    (newline)
+    (terpri)
     (show-players (getf game :players))
-    (newline)
     (princ (getf game :last-move)))
 
 (defun show-pile (pile)
@@ -80,5 +77,5 @@
     (dolist (card pile)
         (format t "    ")
         (princ (show-card card))
-        (newline)))
+        (terpri)))
     

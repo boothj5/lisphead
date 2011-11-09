@@ -12,8 +12,8 @@
           :com.boothj5.lisphead.test-game))
 (in-package :com.boothj5.lisphead.test-suite)
 
-(format t "RUNNING TESTS")
-
+(format t "~%RUNNING TESTS")
+(format t "~%-------------")
 (format t "~%~%-->Card tests:~%")
 (lisp-unit:run-all-tests :com.boothj5.lisphead.test-card)
 (format t "~%~%-->Hand tests:~%")
