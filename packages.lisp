@@ -45,6 +45,7 @@
           :com.boothj5.lisphead.player)
     (:export :newline
              :newlines
+             :clearscreen
              :show-welcome-message
              :request-num-players
              :request-num-cards

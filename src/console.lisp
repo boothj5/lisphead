@@ -72,7 +72,6 @@
     (format t "~d on deck~%" (length (getf game :deck)))
     (newline)
     (show-players (getf game :players))
-    (newline)
     (princ (getf game :last-move)))
 
 (defun show-pile (pile)

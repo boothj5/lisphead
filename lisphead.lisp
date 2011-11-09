@@ -8,14 +8,15 @@
     (defvar *player-names*)
     (defvar *game*)
 
-    (newlines 100)
+    (clearscreen)
     (show-welcome-message)
     (setf *num-players* (request-num-players))
     (setf *num-cards-each* (request-num-cards))
     (setf *player-names* (request-player-names *num-players*))
     (setf *game* (make-game *player-names* *num-cards-each*))
     (deal *game*)
-    (newlines 100)
+    
+    (clearscreen)
     (show-players (getf *game* :players))
     (swap-cards)
     (first-move *game*)
