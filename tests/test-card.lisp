@@ -6,3 +6,7 @@
     (assert-equal "NINE of SPADES" (show-card (make-card 9 0)))
     (assert-equal "JACK of CLUBS" (show-card (make-card 11 2))))
 
+(define-test show-cards-shows-all-cards
+    (assert-equal "TEN of HEARTS, ACE of DIAMONDS, "
+        (show-cards (list (make-card 10 1) (make-card 14 3)))))
+        

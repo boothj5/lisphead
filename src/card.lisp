@@ -14,6 +14,15 @@
         " of " 
         (elt +suits+ (getf card :suit))))
 
+(defun show-cards (cards)
+    (if (not cards)
+        ""
+        (concatenate 'string
+            (concatenate 'string
+                (show-card (car cards))
+                ", ")
+            (show-cards (cdr cards)))))
+
 (defun lowest-card (cards)
     (let ((lowest (elt cards 0)))
         (dotimes (i (length cards))

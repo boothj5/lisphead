@@ -13,3 +13,10 @@
                         (add-to-pile game cards)
                         (length (getf game :pile)))))
 
+(define-test set-last-move-sets-correct-string
+    (assert-equal "James laid THREE of SPADES, SEVEN of DIAMONDS, "
+        (let ((game (make-game (list "James") 4))
+              (cards (list (make-card 3 0) (make-card 7 3))))
+            (set-last-move game cards)
+            (getf game :last-move))))
+            

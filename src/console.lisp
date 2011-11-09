@@ -47,7 +47,7 @@
         (setf player-names (cons name player-names)))
     player-names)
 
-(defun show-cards (name cards)
+(defun show-hand (name cards)
     (format t name)
     (dotimes (i (hand-size cards))
         (princ (show-card (get-card cards i)))
@@ -55,10 +55,10 @@
     (newline))
 
 (defun show-player (player)
-    (format t "~s~%" (getf player :player-name))
-    (show-cards "Hand      : " (getf player :hand))
-    (show-cards "Face up   : " (getf player :face-up))
-    (show-cards "Face down : " (getf player :face-down)))
+    (format t "~A~%" (getf player :player-name))
+    (show-hand "Hand      : " (getf player :hand))
+    (show-hand "Face up   : " (getf player :face-up))
+    (show-hand "Face down : " (getf player :face-down)))
 
 (defun show-players (players)
     (dolist (player players)
@@ -73,7 +73,7 @@
     (newline)
     (show-players (getf game :players))
     (newline)
-    (format t "~s" (getf game :last-move)))
+    (princ (getf game :last-move)))
 
 (defun show-pile (pile)
     (format t "Pile :~%")

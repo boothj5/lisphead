@@ -4,7 +4,8 @@
              :+ranks+
              :make-card
              :equal-rank
-             :show-card))
+             :show-card
+             :show-cards))
 
 (defpackage :com.boothj5.lisphead.hand
     (:use :common-lisp
@@ -66,6 +67,7 @@
              :deal
              :first-move
              :add-to-pile
+             :set-last-move
              :get-current-player))
 
 (defpackage :com.boothj5.lisphead

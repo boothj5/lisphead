@@ -29,6 +29,11 @@
 (defun get-current-player (game)
     (elt (getf game :players) (getf game :current-player))) 
 
+(defun set-last-move (game cards)
+    (let ((player (get-current-player game)))
+    (setf (getf game :last-move)
+          (format nil "~A laid ~A" (getf player :player-name) (show-cards cards)))))
+
 (defun add-to-pile (game cards)
     (dolist (card cards)
         (push card (getf game :pile))))
@@ -46,6 +51,5 @@
                     (push card to-lay))))
         (remove-from-hand player to-lay)
         (add-to-pile game to-lay)
-        (setf (getf game :last-move) 
-              (format nil "~s laid ~s" (getf player :player-name) to-lay))))
+        (set-last-move game to-lay)))
 
