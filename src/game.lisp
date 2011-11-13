@@ -65,6 +65,9 @@
         (> num-players-with-cards 1)))
 
 (defun play-from-hand (game to-lay)
-    (remove-from-hand (get-current-player game) to-lay)
+    (let ((player (get-current-player game))
+          (num-cards (length to-lay))
+          (deck (getf game :deck)))
+    (remove-from-hand player to-lay)
     (add-to-pile game to-lay)
-    (deal-to-hand (get-current-player game) (getf game :deck) (length to-lay)))
+    (deal-to-hand player deck num-cards)))
