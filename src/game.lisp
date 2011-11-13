@@ -26,6 +26,10 @@
                 (add-to-face-up player (pop-deck deck))
                 (add-to-face-down player (pop-deck deck))))))
 
+(defun deal-to-hand (player deck num)
+    (dotimes (i num)
+        (add-to-hand player (pop-deck deck))))
+
 (defun get-current-player (game)
     (elt (getf game :players) (getf game :current-player))) 
 
@@ -46,5 +50,6 @@
         (setf to-lay (get-cards-of-same-rank lowest (getf player :hand)))
         (remove-from-hand player to-lay)
         (add-to-pile game to-lay)
+        (deal-to-hand (get-current-player game) (getf game :deck) (length to-lay))
         (set-last-move game to-lay)))
 

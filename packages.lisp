@@ -69,6 +69,7 @@
              :first-move
              :add-to-pile
              :set-last-move
+             :deal-to-hand
              :get-current-player))
 
 (defpackage :com.boothj5.lisphead

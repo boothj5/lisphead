@@ -2,13 +2,13 @@
 (in-package :com.boothj5.lisphead.hand)
 
 (defun make-hand (num-cards)
-    (make-array num-cards :fill-pointer 0))
+    (make-array num-cards :fill-pointer 0 :adjustable t))
 
 (defun hand-size (cards)
     (length cards))
 
 (defun add-to-cards (hand card)
-    (vector-push card hand))
+    (vector-push-extend card hand))
 
 (defun lowest-card (hand)
     (let ((lowest (elt hand 0)))
@@ -24,8 +24,12 @@
     (setf (elt hand i) card))
 
 (defun remove-card (hand card)
-    (let ((result (remove card hand :test #'equal)))
-        result))
+    (let ((pointer (fill-pointer hand)))
+        (make-array (- (length hand) 1)
+            :initial-contents (remove card hand :test #'equal)
+            :fill-pointer (- pointer 1)
+            :adjustable t)))
+
 
 (defun remove-cards (hand cards)
     (let ((result hand))
