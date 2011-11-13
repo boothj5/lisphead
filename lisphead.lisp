@@ -8,18 +8,22 @@
 (defvar *game*)
 
 (defun main ()
-    (newlines 100)
+    (clearscreen)
     (show-welcome-message)
     (setf *num-players* (request-num-players))
     (setf *num-cards-each* (request-num-cards))
     (setf *player-names* (request-player-names *num-players*))
     (setf *game* (make-game *player-names* *num-cards-each*))
     (deal *game*)
-    (newlines 100)
+    
+    (clearscreen)
     (show-players (getf *game* :players))
     (swap-cards)
     (first-move *game*)
-    (show-game *game*))
+    (show-game *game*)
+
+    (loop until (not (continue-game *game*)) do
+        (request-move (get-current-player *game*))))
 
 (defun swap-cards ()
     (dolist (player (getf *game* :players))

@@ -70,7 +70,9 @@
     (format t "~d on deck~%" (length (getf game :deck)))
     (terpri)
     (show-players (getf game :players))
-    (princ (getf game :last-move)))
+    (princ (getf game :last-move))
+    (terpri)
+    (terpri))
 
 (defun show-pile (pile)
     (format t "Pile :~%")
@@ -78,4 +80,8 @@
         (format t "    ")
         (princ (show-card card))
         (terpri)))
+
+(defun request-move (player)
+    (format t "~A, please enter cards to lay:" (getf player :player-name))
+    (read))
     

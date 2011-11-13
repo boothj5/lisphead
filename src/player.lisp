@@ -39,3 +39,17 @@
 (defun remove-from-hand (player cards)
     (setf (getf player :hand)
           (remove-cards (getf player :hand) cards)))
+
+(defun has-cards-in-hand (player)
+    (> (hand-size (getf player :hand)) 0))
+
+(defun has-cards-in-face-up (player)
+    (> (hand-size (getf player :face-up)) 0))
+
+(defun has-cards-in-face-down (player)
+    (> (hand-size (getf player :face-down)) 0))
+
+(defun has-cards (player)
+    (or (has-cards-in-hand player)
+        (has-cards-in-face-up player)
+        (has-cards-in-face-down player)))
