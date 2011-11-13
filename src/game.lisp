@@ -48,9 +48,7 @@
            (to-lay nil))
         (setf (getf game :current-player) (position player (getf game :players)))
         (setf to-lay (get-cards-of-same-rank lowest (getf player :hand)))
-        (remove-from-hand player to-lay)
-        (add-to-pile game to-lay)
-        (deal-to-hand (get-current-player game) (getf game :deck) (length to-lay))
+        (play-from-hand game to-lay)
         (set-last-move game to-lay))
         (move-to-next-player game))
 
@@ -65,3 +63,8 @@
             (when (has-cards player)
                 (setf num-players-with-cards (+ num-players-with-cards 1))))
         (> num-players-with-cards 1)))
+
+(defun play-from-hand (game to-lay)
+    (remove-from-hand (get-current-player game) to-lay)
+    (add-to-pile game to-lay)
+    (deal-to-hand (get-current-player game) (getf game :deck) (length to-lay)))
