@@ -43,9 +43,14 @@
              :has-cards
              :do-swap))
 
+(defpackage :com.boothj5.lisphead.util
+    (:use :common-lisp)
+    (:export :parse-choice))
+
 (defpackage :com.boothj5.lisphead.console
     (:use :common-lisp 
           :com.boothj5.lisphead.card 
+          :com.boothj5.lisphead.util
           :com.boothj5.lisphead.hand
           :com.boothj5.lisphead.player)
     (:export :newline

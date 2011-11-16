@@ -23,7 +23,10 @@
     (show-game *game*)
 
     (loop until (not (continue-game *game*)) do
-        (request-move (get-current-player *game*))))
+        (let ((choice (request-move (get-current-player *game*))))
+            (terpri)
+            (princ choice)
+            (terpri))))
 
 (defun swap-cards ()
     (dolist (player (getf *game* :players))

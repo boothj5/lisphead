@@ -1,3 +1,7 @@
+(defpackage :com.boothj5.lisphead.test-util
+    (:use :common-lisp :lisp-unit
+          :com.boothj5.lisphead.util))
+
 (defpackage :com.boothj5.lisphead.test-card
     (:use :common-lisp :lisp-unit 
           :com.boothj5.lisphead.card))

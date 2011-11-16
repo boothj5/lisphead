@@ -83,5 +83,5 @@
 
 (defun request-move (player)
     (format t "~A, please enter cards to lay:" (getf player :player-name))
-    (read))
+    (parse-choice (read-line)))
     

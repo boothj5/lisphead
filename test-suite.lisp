@@ -5,6 +5,7 @@
 (load "tests/load.lisp")
 (defpackage :com.boothj5.lisphead.test-suite
     (:use :common-lisp :lisp-unit
+          :com.boothj5.lisphead.test-util
           :com.boothj5.lisphead.test-card
           :com.boothj5.lisphead.test-hand
           :com.boothj5.lisphead.test-deck
@@ -14,6 +15,8 @@
 
 (format t "~%RUNNING TESTS")
 (format t "~%-------------")
+(format t "~%~%-->Util tests:~%")
+(lisp-unit:run-all-tests :com.boothj5.lisphead.test-util)
 (format t "~%~%-->Card tests:~%")
 (lisp-unit:run-all-tests :com.boothj5.lisphead.test-card)
 (format t "~%~%-->Hand tests:~%")
