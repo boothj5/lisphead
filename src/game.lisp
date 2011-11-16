@@ -53,7 +53,7 @@
         (move-to-next-player game))
 
 (defun move-to-next-player (game)
-    (setf (getf game :current-player) (+ (getf game :current-player) 1))
+    (incf (getf game :current-player))
     (when (eql (getf game :current-player) (length (getf game :players)))
         (setf (getf game :current-player) 0)))
 
@@ -61,13 +61,13 @@
     (let ((num-players-with-cards 0))
         (dolist (player (getf game :players))
             (when (has-cards player)
-                (setf num-players-with-cards (+ num-players-with-cards 1))))
+                (incf num-players-with-cards)))
         (> num-players-with-cards 1)))
 
 (defun play-from-hand (game to-lay)
     (let ((player (get-current-player game))
           (num-cards (length to-lay))
           (deck (getf game :deck)))
-    (remove-from-hand player to-lay)
-    (add-to-pile game to-lay)
-    (deal-to-hand player deck num-cards)))
+        (remove-from-hand player to-lay)
+        (add-to-pile game to-lay)
+        (deal-to-hand player deck num-cards)))
