@@ -52,6 +52,12 @@
         (set-last-move game to-lay))
         (move-to-next-player game))
 
+(defun make-move (game choice)
+    ; get cards from choice indexes
+    (play-from-hand game choice)
+    (set-last-move game choice)
+    (move-to-next-player game))
+
 (defun move-to-next-player (game)
     (incf (getf game :current-player))
     (when (eql (getf game :current-player) (length (getf game :players)))

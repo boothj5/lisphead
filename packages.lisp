@@ -78,6 +78,7 @@
     (:export :make-game
              :deal
              :first-move
+             :make-move
              :add-to-pile
              :set-last-move
              :deal-to-hand
