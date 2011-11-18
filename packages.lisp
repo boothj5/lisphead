@@ -14,6 +14,7 @@
              :hand-size
              :add-to-cards
              :get-card
+             :get-cards-at
              :set-card
              :get-cards-of-same-rank
              :remove-cards

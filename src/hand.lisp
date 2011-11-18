@@ -48,5 +48,12 @@
         to-lay))
 
 
+(defun get-cards-at (indexes hand)
+    (let ((cards nil))
+        (dolist (i indexes)
+            (push (get-card hand i) cards))
+        cards))
+
+
 
 

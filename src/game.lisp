@@ -48,14 +48,17 @@
            (to-lay nil))
         (setf (getf game :current-player) (position player (getf game :players)))
         (setf to-lay (get-cards-of-same-rank lowest (getf player :hand)))
-        (play-from-hand game to-lay)
-        (set-last-move game to-lay))
-        (move-to-next-player game))
+        (hand-move game to-lay)))
 
 (defun make-move (game choice)
-    ; get cards from choice indexes
-    (play-from-hand game choice)
-    (set-last-move game choice)
+    (let* ((player (get-current-player game))
+           (hand (getf player :hand))
+           (cards (get-cards-at choice hand)))
+        (hand-move game cards)))
+
+(defun hand-move (game cards)
+    (play-from-hand game cards)
+    (set-last-move game cards)
     (move-to-next-player game))
 
 (defun move-to-next-player (game)
