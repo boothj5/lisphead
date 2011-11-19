@@ -1,6 +1,8 @@
 (load "packages.lisp")
 (in-package :com.boothj5.lisphead.console)
 
+;;; public functions
+
 (defun newlines (num)
     (dotimes (i num) (terpri)))
 
@@ -45,13 +47,6 @@
         (setf player-names (cons name player-names)))
     player-names)
 
-(defun show-hand (name cards)
-    (format t name)
-    (dotimes (i (hand-size cards))
-        (princ (show-card (get-card cards i)))
-        (princ ", "))
-    (terpri))
-
 (defun show-player (player)
     (format t "~A~%" (getf player :player-name))
     (show-hand "Hand      : " (getf player :hand))
@@ -74,14 +69,22 @@
     (terpri)
     (terpri))
 
+(defun request-move (player)
+    (format t "~A, please enter cards to lay:" (getf player :player-name))
+    (parse-choice (read-line)))
+    
+;;; private functions
+
+(defun show-hand (name cards)
+    (format t name)
+    (dotimes (i (hand-size cards))
+        (princ (show-card (get-card cards i)))
+        (princ ", "))
+    (terpri))
+
 (defun show-pile (pile)
     (format t "Pile :~%")
     (dolist (card pile)
         (format t "    ")
         (princ (show-card card))
         (terpri)))
-
-(defun request-move (player)
-    (format t "~A, please enter cards to lay:" (getf player :player-name))
-    (parse-choice (read-line)))
-    

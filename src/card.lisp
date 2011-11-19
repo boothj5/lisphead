@@ -5,6 +5,8 @@
 (defconstant +ranks+ '(nil nil "TWO" "THREE" "FOUR" "FIVE" "SIX" 
                         "SEVEN" "EIGHT" "NINE" "TEN" "JACK" "QUEEN" "KING" "ACE"))
 
+;;; public functions
+
 (defun make-card (rank suit)
     (list :rank rank :suit suit))
 
@@ -23,14 +25,7 @@
                 ", ")
             (show-cards (cdr cards)))))
 
-(defun lowest-card (cards)
-    (let ((lowest (elt cards 0)))
-        (dotimes (i (length cards))
-            (when (< (getf (elt cards i) :rank) (getf lowest :rank)) 
-                (setf lowest (elt cards i))))
-        lowest))
-
-(defun equal-rank (card1 card2)
+(defun rank-equal (card1 card2)
     (equal (getf card1 :rank) (getf card2 :rank)))
 
 (defun rank-gtr (card1 card2)

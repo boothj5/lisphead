@@ -1,6 +1,15 @@
 (load "packages.lisp")
 (in-package :com.boothj5.lisphead.util)
 
+;;; public functions
+
+(defun parse-choice (str)
+    (mapcar #'(lambda (s)
+                (- (parse-integer s) 1))
+            (choice-tok str #'digit-char-p 0)))
+
+;;; private functions            
+
 (defun choice-tok (str test start)
     (let ((p1 (position-if test str :start start)))
         (if p1
@@ -12,9 +21,3 @@
                         (choice-tok str test p2)
                         nil)))
             nil)))  
-
-(defun parse-choice (str)
-    (mapcar #'(lambda (s)
-                (- (parse-integer s) 1))
-            (choice-tok str #'digit-char-p 0)))
-            

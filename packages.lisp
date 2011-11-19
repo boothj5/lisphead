@@ -4,7 +4,7 @@
              :+ranks+
              :make-card
              :rank-gtr
-             :equal-rank
+             :rank-equal
              :show-card
              :show-cards))
 
@@ -56,8 +56,7 @@
           :com.boothj5.lisphead.util
           :com.boothj5.lisphead.hand
           :com.boothj5.lisphead.player)
-    (:export :newline
-             :newlines
+    (:export :newlines
              :clearscreen
              :show-welcome-message
              :request-num-players

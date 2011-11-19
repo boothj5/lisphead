@@ -3,6 +3,8 @@
 
 (setf *random-state* (make-random-state t))
 
+;;; public functions
+
 (defun make-game (player-names num-cards)
     (let ((players nil)
           (deck (make-deck (length player-names) num-cards)))
@@ -56,30 +58,12 @@
            (cards (get-cards-at choice hand)))
         (hand-move game cards)))
 
-(defun hand-move (game cards)
-    (play-from-hand game cards)
-    (set-last-move game cards)
-    (move-to-next-player game))
-
-(defun move-to-next-player (game)
-    (incf (getf game :current-player))
-    (when (eql (getf game :current-player) (length (getf game :players)))
-        (setf (getf game :current-player) 0)))
-
 (defun continue-game (game)
     (let ((num-players-with-cards 0))
         (dolist (player (getf game :players))
             (when (has-cards player)
                 (incf num-players-with-cards)))
         (> num-players-with-cards 1)))
-
-(defun play-from-hand (game to-lay)
-    (let ((player (get-current-player game))
-          (num-cards (length to-lay))
-          (deck (getf game :deck)))
-        (remove-from-hand player to-lay)
-        (add-to-pile game to-lay)
-        (deal-to-hand player deck num-cards)))
 
 (defun playing-from-face-down (game)
     (let ((player (get-current-player game)))
@@ -97,10 +81,32 @@
                     (can-move-with (getf player :face-up) game))
               (t nil))))
 
+;;; private functions
+
+(defun hand-move (game cards)
+    (play-from-hand game cards)
+    (set-last-move game cards)
+    (move-to-next-player game))
+
+(defun move-to-next-player (game)
+    (incf (getf game :current-player))
+    (when (eql (getf game :current-player) (length (getf game :players)))
+        (setf (getf game :current-player) 0)))
+
+(defun play-from-hand (game to-lay)
+    (let ((player (get-current-player game))
+          (num-cards (length to-lay))
+          (deck (getf game :deck)))
+        (remove-from-hand player to-lay)
+        (add-to-pile game to-lay)
+        (deal-to-hand player deck num-cards)))
+
 (defun can-move-with (hand game)
     (let ((pile-top (car (getf game :pile)))
           (can nil))
         (dotimes (i (hand-size hand))
-            (when (rank-gtr (get-card hand i) pile-top)
+            (when (or (rank-gtr (get-card hand i) pile-top)
+                      (rank-equal (get-card hand i) pile-top))
                 (setf can t)))
         can))
+

@@ -1,6 +1,8 @@
 (load "packages.lisp")
 (in-package :com.boothj5.lisphead.player)
 
+;;; public functions
+
 (defun make-player (name num-cards)
     (let ((hand (make-hand num-cards))
           (face-up (make-hand num-cards))

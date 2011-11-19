@@ -1,6 +1,8 @@
 (load "packages.lisp")
 (in-package :com.boothj5.lisphead.hand)
 
+;;; public functions
+
 (defun make-hand (num-cards)
     (make-array num-cards :fill-pointer 0 :adjustable t))
 
@@ -23,13 +25,6 @@
 (defun set-card (hand i card)
     (setf (elt hand i) card))
 
-(defun remove-card (hand card)
-    (let ((pointer (fill-pointer hand)))
-        (make-array (- (length hand) 1)
-            :initial-contents (remove card hand :test #'equal)
-            :fill-pointer (- pointer 1)
-            :adjustable t)))
-
 (defun remove-cards (hand cards)
     (let ((result hand))
         (dolist (card cards)
@@ -41,7 +36,7 @@
         (push card to-lay)
         (dotimes (i (hand-size hand))
             (let ((test-card (get-card hand i)))
-                (when (and (equal-rank test-card (car to-lay)) 
+                (when (and (rank-equal test-card (car to-lay)) 
                            (not (eql test-card (car to-lay))))
                     (push test-card to-lay))))
         to-lay))
@@ -55,4 +50,11 @@
 (defun has-cards (hand)
     (> (hand-size hand) 0))
 
+;;; private functions
 
+(defun remove-card (hand card)
+    (let ((pointer (fill-pointer hand)))
+        (make-array (- (length hand) 1)
+            :initial-contents (remove card hand :test #'equal)
+            :fill-pointer (- pointer 1)
+            :adjustable t)))
