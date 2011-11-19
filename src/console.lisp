@@ -51,7 +51,7 @@
     (format t "~A~%" (getf player :player-name))
     (show-hand "Hand      : " (getf player :hand))
     (show-hand "Face up   : " (getf player :face-up))
-    (show-hand "Face down : " (getf player :face-down)))
+    (show-hand "Face down : " (getf player :face-down) t))
 
 (defun show-players (players)
     (dolist (player players)
@@ -75,10 +75,12 @@
     
 ;;; private functions
 
-(defun show-hand (name cards)
+(defun show-hand (name cards &optional hide)
     (format t name)
     (dotimes (i (hand-size cards))
-        (princ (show-card (get-card cards i)))
+        (if hide
+            (princ "****")
+            (princ (show-card (get-card cards i))))
         (princ ", "))
     (terpri))
 
