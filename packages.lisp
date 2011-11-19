@@ -3,6 +3,7 @@
     (:export :+suits+
              :+ranks+
              :make-card
+             :rank-gtr
              :equal-rank
              :show-card
              :show-cards))
@@ -12,6 +13,7 @@
           :com.boothj5.lisphead.card)
     (:export :make-hand
              :hand-size
+             :has-cards
              :add-to-cards
              :get-card
              :get-cards-at
@@ -41,7 +43,7 @@
              :has-cards-in-hand
              :has-cards-in-face-up
              :has-cards-in-face-down
-             :has-cards
+             :player-has-cards
              :do-swap))
 
 (defpackage :com.boothj5.lisphead.util
@@ -82,8 +84,10 @@
              :make-move
              :add-to-pile
              :set-last-move
+             :playing-from-face-down
              :deal-to-hand
              :continue-game
+             :can-play
              :get-current-player))
 
 (defpackage :com.boothj5.lisphead

@@ -30,7 +30,6 @@
             :fill-pointer (- pointer 1)
             :adjustable t)))
 
-
 (defun remove-cards (hand cards)
     (let ((result hand))
         (dolist (card cards)
@@ -47,13 +46,13 @@
                     (push test-card to-lay))))
         to-lay))
 
-
 (defun get-cards-at (indexes hand)
     (let ((cards nil))
         (dolist (i indexes)
             (push (get-card hand i) cards))
         cards))
 
-
+(defun has-cards (hand)
+    (> (hand-size hand) 0))
 
 

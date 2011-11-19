@@ -22,10 +22,14 @@
     (first-move *game*)
     (show-game *game*)
 
-    (loop until (not (continue-game *game*)) do
-        (let ((choice (request-move (get-current-player *game*))))
-            (make-move *game* choice)
-            (show-game *game*))))
+    (loop while (continue-game *game*) do
+        (cond ((playing-from-face-down *game*)
+                    (princ "Playing from face down"))
+              ((can-play *game*)
+                    (let ((choice (request-move (get-current-player *game*))))
+                        (make-move *game* choice)
+                        (show-game *game*)))
+              (t (princ "Must pickup!")))))
 
 (defun swap-cards ()
     (dolist (player (getf *game* :players))

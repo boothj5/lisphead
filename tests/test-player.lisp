@@ -94,9 +94,9 @@
     (assert-false (has-cards-in-face-down (make-player-with-face-up))))
 
 (define-test has-cards
-    (assert-true (has-cards (make-player-with-hand)))
-    (assert-true (has-cards (make-player-with-face-up)))
-    (assert-true (has-cards (make-player-with-face-down))))
+    (assert-true (player-has-cards (make-player-with-hand)))
+    (assert-true (player-has-cards (make-player-with-face-up)))
+    (assert-true (player-has-cards (make-player-with-face-down))))
 
 (define-test not-has-cards-when-doesnt
-    (assert-false (has-cards (make-player "James" 4))))
+    (assert-false (player-has-cards (make-player "James" 4))))

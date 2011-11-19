@@ -74,5 +74,12 @@
                  (find (make-card 8 1) result :test #'equal)
                  (find (make-card 8 2) result :test #'equal)
                  (find (make-card 8 3) result :test #'equal)))))
-            
-            
+
+(define-test hand-size-correct
+    (assert-equal 4 (hand-size (make-hand1))))
+
+(define-test has-cards-when-does
+    (assert-true (has-cards (make-hand1))))
+
+(define-test not-has-cards-when-none
+    (assert-false (has-cards (make-hand 4))))

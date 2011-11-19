@@ -32,3 +32,6 @@
 
 (defun equal-rank (card1 card2)
     (equal (getf card1 :rank) (getf card2 :rank)))
+
+(defun rank-gtr (card1 card2)
+    (> (getf card1 :rank) (getf card2 :rank)))
