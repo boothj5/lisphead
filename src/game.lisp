@@ -58,6 +58,14 @@
            (cards (get-cards-at choice hand)))
         (hand-move game cards)))
 
+(defun valid-move (choice game)
+    (let* ((player (get-current-player game))
+           (hand (getf player :hand))
+           (cards (get-cards-at choice hand)))
+        (if (not (all-ranks-equal cards))
+            nil
+            (valid-move-on-pile (car cards) (getf game :pile)))))
+
 (defun continue-game (game)
     (let ((num-players-with-cards 0))
         (dolist (player (getf game :players))
@@ -102,11 +110,14 @@
         (deal-to-hand player deck num-cards)))
 
 (defun can-move-with (hand game)
-    (let ((pile-top (car (getf game :pile)))
-          (can nil))
+    (let ((can nil))
         (dotimes (i (hand-size hand))
-            (when (or (rank-gtr (get-card hand i) pile-top)
-                      (rank-equal (get-card hand i) pile-top))
+            (when (valid-move-on-pile (get-card hand i) (getf game :pile))
                 (setf can t)))
         can))
 
+(defun valid-move-on-pile (card pile)
+    (cond ((null pile) t)
+          ((special-card card) t)
+          ((invisible-card (car pile)) (valid-move-on-pile card (cdr pile)))
+          (t (or (rank-gtr card (car pile)) (rank-equal card (car pile))))))

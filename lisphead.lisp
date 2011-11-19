@@ -27,8 +27,12 @@
                     (princ "Playing from face down"))
               ((can-play *game*)
                     (let ((choice (request-move (get-current-player *game*))))
-                        (make-move *game* choice)
-                        (show-game *game*)))
+                        (if (valid-move choice *game*)
+                            (progn
+                                (make-move *game* choice)
+                                (show-game *game*))
+                            (progn
+                                (show-invalid-move)))))
               (t (princ "Must pickup!")))))
 
 (defun swap-cards ()

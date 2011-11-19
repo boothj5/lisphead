@@ -88,3 +88,6 @@
         (format t "    ")
         (princ (show-card card))
         (terpri)))
+
+(defun show-invalid-move ()
+    (format t "You cannot do that!~%"))

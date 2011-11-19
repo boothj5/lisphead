@@ -3,8 +3,11 @@
     (:export :+suits+
              :+ranks+
              :make-card
+             :special-card 
+             :invisible-card
              :rank-gtr
              :rank-equal
+             :all-ranks-equal
              :show-card
              :show-cards))
 
@@ -67,6 +70,7 @@
              :request-hand-swap
              :request-face-up-swap
              :request-move
+             :show-invalid-move
              :show-player
              :show-game
              :show-players))
@@ -87,6 +91,7 @@
              :deal-to-hand
              :continue-game
              :can-play
+             :valid-move
              :get-current-player))
 
 (defpackage :com.boothj5.lisphead

@@ -30,3 +30,24 @@
 
 (defun rank-gtr (card1 card2)
     (> (getf card1 :rank) (getf card2 :rank)))
+
+(defun invisible-card (card)
+    (eql (getf card :rank) 7))
+
+(defun reset-card (card)
+    (eql (getf card :rank) 2))
+
+(defun burn-card (card)
+    (eql (getf card :rank) 10))
+
+(defun special-card (card)
+    (or (reset-card card)
+        (invisible-card card)
+        (burn-card card)))
+
+(defun all-ranks-equal (cards)
+    (let ((card1 (car cards))
+          (result t))
+        (dolist (card cards)
+            (when (not (rank-equal card1 card)) (setf result nil)))
+        result))
