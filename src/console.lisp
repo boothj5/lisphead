@@ -94,3 +94,7 @@
         (princ (show-card card))
         (terpri)))
 
+(defun show-pickup (player)
+    (format t "~A, you have to pick up! Press enter." (getf player :player-name))
+    (read-line))
+

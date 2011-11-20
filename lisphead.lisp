@@ -32,7 +32,11 @@
                                 (make-move *game* choice)
                                 (show-game *game*))
                             (show-invalid-move))))
-              (t (princ "Must pickup!")))))
+              (t (progn
+                    (show-pickup (get-current-player *game*))
+                    (pickup *game*)
+                    (clearscreen)
+                    (show-game *game*))))))
 
 (defun swap-cards ()
     (dolist (player (getf *game* :players))

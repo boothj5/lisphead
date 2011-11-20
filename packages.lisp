@@ -75,6 +75,7 @@
              :show-invalid-move
              :show-player
              :show-game
+             :show-pickup
              :show-players))
 
 (defpackage :com.boothj5.lisphead.game
@@ -94,6 +95,7 @@
              :continue-game
              :can-play
              :valid-move
+             :pickup
              :get-current-player))
 
 (defpackage :com.boothj5.lisphead

@@ -92,6 +92,16 @@
                     (can-move-with (getf player :face-up) game))
               (t nil))))
 
+(defun pickup (game)
+    (let ((player (get-current-player game)))
+        (dolist (card (getf game :pile))
+            (add-to-hand player card))
+        (sort-hand player)
+        (setf (getf game :pile) nil)
+        (setf (getf game :last-move)    
+              (format nil "~A picked up" (getf player :player-name)))
+        (move-to-next-player game)))
+
 ;;; private functions
 
 (defun hand-move (game cards)
