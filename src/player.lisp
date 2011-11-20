@@ -55,3 +55,7 @@
     (or (has-cards-in-hand player)
         (has-cards-in-face-up player)
         (has-cards-in-face-down player)))
+
+(defun sort-hand (player)
+    (setf (getf player :hand)
+          (sort (getf player :hand) #'sh-cmp)))

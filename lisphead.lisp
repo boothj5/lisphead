@@ -31,8 +31,7 @@
                             (progn
                                 (make-move *game* choice)
                                 (show-game *game*))
-                            (progn
-                                (show-invalid-move)))))
+                            (show-invalid-move))))
               (t (princ "Must pickup!")))))
 
 (defun swap-cards ()

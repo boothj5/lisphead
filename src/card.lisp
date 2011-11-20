@@ -45,6 +45,13 @@
         (invisible-card card)
         (burn-card card)))
 
+(defun sh-cmp (card1 card2)
+    (cond 
+        ((and (not (special-card card1)) (special-card card2)) t)
+        ((and (special-card card1) (special-card card2)) nil)
+        ((and (special-card card1) (not (special-card card2))) nil)
+        (t (rank-gtr card2 card1))))
+
 (defun all-ranks-equal (cards)
     (let ((card1 (car cards))
           (result t))

@@ -7,6 +7,7 @@
              :invisible-card
              :rank-gtr
              :rank-equal
+             :sh-cmp
              :all-ranks-equal
              :show-card
              :show-cards))
@@ -47,6 +48,7 @@
              :has-cards-in-face-up
              :has-cards-in-face-down
              :player-has-cards
+             :sort-hand
              :do-swap))
 
 (defpackage :com.boothj5.lisphead.util

@@ -26,7 +26,8 @@
             (dotimes (i num-cards)
                 (add-to-hand player (pop-deck deck))
                 (add-to-face-up player (pop-deck deck))
-                (add-to-face-down player (pop-deck deck))))))
+                (add-to-face-down player (pop-deck deck)))
+            (sort-hand player))))
 
 (defun deal-to-hand (player deck num)
     (dotimes (i num)
@@ -50,13 +51,15 @@
            (to-lay nil))
         (setf (getf game :current-player) (position player (getf game :players)))
         (setf to-lay (get-cards-of-same-rank lowest (getf player :hand)))
-        (hand-move game to-lay)))
+        (hand-move game to-lay)
+        (sort-hand player)))
 
 (defun make-move (game choice)
     (let* ((player (get-current-player game))
            (hand (getf player :hand))
            (cards (get-cards-at choice hand)))
-        (hand-move game cards)))
+        (hand-move game cards)
+        (sort-hand player)))
 
 (defun valid-move (choice game)
     (let* ((player (get-current-player game))
