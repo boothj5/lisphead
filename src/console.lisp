@@ -80,8 +80,8 @@
     (dotimes (i (hand-size cards))
         (if hide
             (princ "****")
-            (princ (show-card (get-card cards i))))
-        (princ ", "))
+            (format t "(~A)~A" (+ i 1) (show-card (get-card cards i))))
+        (unless (eql (+ i 1) (hand-size cards)) (princ ", ")))
     (terpri))
 
 (defun show-pile (pile)
