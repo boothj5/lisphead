@@ -73,6 +73,9 @@
     (format t "~A, please enter cards to lay:" (getf player :player-name))
     (parse-choice (read-line)))
     
+(defun show-invalid-move ()
+    (format t "You cannot do that!~%"))
+
 ;;; private functions
 
 (defun show-hand (name cards &optional hide)
@@ -91,5 +94,3 @@
         (princ (show-card card))
         (terpri)))
 
-(defun show-invalid-move ()
-    (format t "You cannot do that!~%"))
