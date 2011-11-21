@@ -62,6 +62,8 @@
     (clearscreen)
     (show-pile (getf game :pile))
     (terpri)
+    (format t "~d burnt~%" (length (getf game :burnt)))
+    (terpri)
     (format t "~d on deck~%" (length (getf game :deck)))
     (terpri)
     (show-players (getf game :players))

@@ -14,7 +14,8 @@
         (list :players players 
               :current-player 0 
               :deck deck
-              :pile nil 
+              :pile nil
+              :burnt nil 
               :last-move ""
               :num-cards num-cards)))
            
@@ -106,8 +107,19 @@
 
 (defun hand-move (game cards)
     (play-from-hand game cards)
+    (burn game)
     (set-last-move game cards)
     (move-to-next-player game))
+
+(defun burn (game)
+    (let* ((pile (getf game :pile))
+          (top (car pile)))
+        (when (burn-card top)
+            (progn
+                (setf (getf game :burnt) 
+                    (append (getf game :burnt) pile))
+                (setf (getf game :pile) nil)))))
+        
 
 (defun move-to-next-player (game)
     (incf (getf game :current-player))

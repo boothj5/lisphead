@@ -5,6 +5,7 @@
              :make-card
              :special-card 
              :invisible-card
+             :burn-card
              :rank-gtr
              :rank-equal
              :sh-cmp
