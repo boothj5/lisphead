@@ -109,11 +109,17 @@
     (play-from-hand game cards)
     (burn game)
     (set-last-move game cards)
-    (move-to-next-player game))
+    (move-to-next-player game)
+    (when (miss-a-go-card-laid (getf game :pile))
+        (move-to-next-player game)))
+
+(defun miss-a-go-card-laid (pile)
+    (let ((top (car pile)))
+        (miss-a-go-card top)))
 
 (defun burn (game)
     (let* ((pile (getf game :pile))
-          (top (car pile)))
+           (top (car pile)))
         (when (burn-card top)
             (progn
                 (setf (getf game :burnt) 

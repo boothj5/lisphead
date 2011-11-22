@@ -6,6 +6,7 @@
              :special-card 
              :invisible-card
              :burn-card
+             :miss-a-go-card
              :rank-gtr
              :rank-equal
              :sh-cmp

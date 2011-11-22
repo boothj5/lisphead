@@ -40,6 +40,9 @@
 (defun burn-card (card)
     (eql (getf card :rank) 10))
 
+(defun miss-a-go-card (card)
+    (eql (getf card :rank) 8))
+
 (defun special-card (card)
     (or (reset-card card)
         (invisible-card card)
