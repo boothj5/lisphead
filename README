@@ -1,0 +1,11 @@
+Common Lisp implementation of the card game shithead
+
+To run :
+
+    clisp lisphead.lisp
+
+Todo:
+
+First move shouldn't lay special cards
+play from face up
+play from face down

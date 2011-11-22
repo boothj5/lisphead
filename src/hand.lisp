@@ -15,7 +15,7 @@
 (defun lowest-card (hand)
     (let ((lowest (elt hand 0)))
         (dotimes (i (length hand))
-            (if (< (getf (elt hand i) :rank) (getf lowest :rank))
+            (when (sh-cmp (elt hand i) lowest)
                 (setf lowest (elt hand i))))
         lowest))
 
