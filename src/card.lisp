@@ -22,7 +22,9 @@
         (concatenate 'string
             (concatenate 'string
                 (show-card (car cards))
-                ", ")
+                (if (eql (length cards) 1)
+                    ""
+                    ", "))
             (show-cards (cdr cards)))))
 
 (defun rank-equal (card1 card2)
