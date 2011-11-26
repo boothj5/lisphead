@@ -144,7 +144,11 @@
           (deck (getf game :deck)))
         (remove-from-hand player to-lay)
         (add-to-pile game to-lay)
-        (deal-to-hand player deck num-cards)))
+        (when (< (hand-size (getf player :hand)) (getf game :num-cards))
+            (deal-to-hand player 
+                          deck 
+                          (- (getf game :num-cards)
+                             (hand-size (getf player :hand))))))) 
 
 (defun can-move-with (hand game)
     (let ((can nil))
