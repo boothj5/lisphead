@@ -59,14 +59,22 @@
 (defun make-move (game choice)
     (let* ((player (get-current-player game))
            (hand (getf player :hand))
-           (cards (get-cards-at choice hand)))
-        (hand-move game cards)
-        (sort-hand player)))
+           (face-up (getf player :face-up))
+           (cards (cond ((> (hand-size hand) 0) (get-cards-at choice hand))
+                        ((> (hand-size face-up) 0) (get-cards-at choice face-up)))))
+        (cond ((> (hand-size hand) 0)
+                (progn
+                    (hand-move game cards)
+                    (sort-hand player)))
+              ((> (hand-size face-up) 0)
+                (face-up-move game cards)))))
 
 (defun valid-move (choice game)
     (let* ((player (get-current-player game))
            (hand (getf player :hand))
-           (cards (get-cards-at choice hand)))
+           (face-up (getf player :face-up))
+           (cards (cond ((> (hand-size hand) 0) (get-cards-at choice hand))
+                        ((> (hand-size face-up) 0) (get-cards-at choice face-up)))))
         (if (not (all-ranks-equal cards))
             nil
             (valid-move-on-pile (car cards) (getf game :pile)))))
@@ -117,6 +125,17 @@
                 (when (miss-a-go-card-laid (getf game :pile))
                     (move-to-next-player game))))))
 
+(defun face-up-move (game cards)
+    (play-from-face-up game cards)
+    (set-last-move game cards)
+    (cond ((burnp game)
+                (burn-pile game))
+           (t
+            (progn
+                (move-to-next-player game)
+                (when (miss-a-go-card-laid (getf game :pile))
+                    (move-to-next-player game))))))
+
 (defun miss-a-go-card-laid (pile)
     (let ((top (car pile)))
         (miss-a-go-card top)))
@@ -150,6 +169,11 @@
                           deck 
                           (- (getf game :num-cards)
                              (hand-size (getf player :hand))))))) 
+
+(defun play-from-face-up (game to-lay)
+    (let ((player (get-current-player game)))
+        (remove-from-face-up player to-lay)
+        (add-to-pile game to-lay)))
 
 (defun can-move-with (hand game)
     (let ((can nil))

@@ -47,6 +47,7 @@
              :lowest-hand-card
              :player-with-lowest-in-hand
              :remove-from-hand
+             :remove-from-face-up
              :has-cards-in-hand
              :has-cards-in-face-up
              :has-cards-in-face-down
