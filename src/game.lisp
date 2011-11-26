@@ -32,7 +32,8 @@
 
 (defun deal-to-hand (player deck num)
     (dotimes (i num)
-        (add-to-hand player (pop-deck deck))))
+        (when (> (deck-size deck) 0)
+            (add-to-hand player (pop-deck deck)))))
 
 (defun get-current-player (game)
     (elt (getf game :players) (getf game :current-player))) 

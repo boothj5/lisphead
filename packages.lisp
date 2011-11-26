@@ -32,6 +32,7 @@
     (:use :common-lisp
           :com.boothj5.lisphead.card)
     (:export :make-deck
+             :deck-size
              :shuffle
              :pop-deck))
 

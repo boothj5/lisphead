@@ -24,6 +24,9 @@
 (defun pop-deck (deck)
     (vector-pop deck))
 
+(defun deck-size (deck)
+    (length deck))
+
 ;;; private functions
 
 (defun create-single-deck ()
