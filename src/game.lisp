@@ -106,26 +106,31 @@
 ;;; private functions
 
 (defun hand-move (game cards)
-    (play-from-hand game cards)
-    (burn game)
-    (set-last-move game cards)
-    (move-to-next-player game)
-    (when (miss-a-go-card-laid (getf game :pile))
-        (move-to-next-player game)))
+    (let ((burn nil))
+        (play-from-hand game cards)
+        (set-last-move game cards)
+        (setf burn (burnp game))
+        (when burn 
+            (burn-pile game))
+        (unless burn 
+            (progn
+                (move-to-next-player game)
+                (when (miss-a-go-card-laid (getf game :pile))
+                    (move-to-next-player game))))))
 
 (defun miss-a-go-card-laid (pile)
     (let ((top (car pile)))
         (miss-a-go-card top)))
 
-(defun burn (game)
+(defun burnp (game)
     (let* ((pile (getf game :pile))
            (top (car pile)))
-        (when (burn-card top)
-            (progn
-                (setf (getf game :burnt) 
-                    (append (getf game :burnt) pile))
-                (setf (getf game :pile) nil)))))
-        
+        (burn-card top)))
+
+(defun burn-pile (game)
+    (setf (getf game :burnt) 
+        (append (getf game :burnt) (getf game :pile)))
+    (setf (getf game :pile) nil))
 
 (defun move-to-next-player (game)
     (incf (getf game :current-player))
