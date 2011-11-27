@@ -93,6 +93,11 @@
 (defun show-invalid-move ()
     (format t "You cannot do that!~%"))
 
+(defun show-lisphead (player)
+    (terpri)
+    (format t "~A is a shithead!!!!!!!!" (getf player :player-name))
+    (terpri))
+
 ;;; private functions
 
 (defun show-hand (name cards &optional hide)

@@ -49,7 +49,8 @@
                     (show-pickup (get-current-player *game*))
                     (pickup *game*)
                     (clearscreen)
-                    (show-game *game*))))))
+                    (show-game *game*)))))
+    (show-lisphead (get-shithead *game*)))
 
 (defun swap-cards ()
     (dolist (player (getf *game* :players))

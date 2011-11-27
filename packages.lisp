@@ -84,7 +84,8 @@
              :show-player
              :show-game
              :show-pickup
-             :show-players))
+             :show-players
+             :show-lisphead))
 
 (defpackage :com.boothj5.lisphead.game
     (:use :common-lisp 
@@ -106,7 +107,8 @@
              :valid-move
              :pickup
              :pickup-with-card
-             :get-current-player))
+             :get-current-player
+             :get-shithead))
 
 (defpackage :com.boothj5.lisphead
     (:use :common-lisp

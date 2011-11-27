@@ -92,7 +92,7 @@
 (defun continue-game (game)
     (let ((num-players-with-cards 0))
         (dolist (player (getf game :players))
-            (when (has-cards player)
+            (when (player-has-cards player)
                 (incf num-players-with-cards)))
         (> num-players-with-cards 1)))
 
@@ -125,11 +125,15 @@
 (defun pickup-with-card (game card)
     (let ((player (get-current-player game)))
         (add-to-hand player card)
-        (princ "added to hand")
         (remove-from-face-down player (list card))
-        (princ "removed from face down")
-        (pickup game)
-        (princ "picked up")))
+        (pickup game)))
+
+(defun get-shithead (game)
+    (let ((shithead nil))
+        (dolist (player (getf game :players))
+            (when (player-has-cards player)
+                (setf shithead player)))
+        shithead))
 
 ;;; private functions
 
