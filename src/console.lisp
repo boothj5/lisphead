@@ -51,7 +51,7 @@
     (format t "~A~%" (getf player :player-name))
     (show-hand "Hand      : " (getf player :hand))
     (show-hand "Face up   : " (getf player :face-up))
-    (show-hand "Face down : " (getf player :face-down) t))
+    (show-hand "Face down : " (getf player :face-down)))
 
 (defun show-players (players)
     (dolist (player players)
@@ -74,7 +74,22 @@
 (defun request-move (player)
     (format t "~A, please enter cards to lay:" (getf player :player-name))
     (parse-choice (read-line)))
+
+(defun request-face-down-card (player)
+    (format t "~A, please choose a face down card: " 
+        (getf player :player-name))
+    (- (read) 1))
+
+(defun show-face-down-win (card)
+    (format t "WHEW! You chose the ~A, press enter to continue."
+        (show-card card))
+    (read-line))    
     
+(defun show-face-down-fail (card)
+    (format t "OH DEAR! You chose the ~A, press enter to pickup."
+        (show-card card))
+    (read-line))    
+
 (defun show-invalid-move ()
     (format t "You cannot do that!~%"))
 

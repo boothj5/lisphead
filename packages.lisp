@@ -48,6 +48,7 @@
              :player-with-lowest-in-hand
              :remove-from-hand
              :remove-from-face-up
+             :remove-from-face-down
              :has-cards-in-hand
              :has-cards-in-face-up
              :has-cards-in-face-down
@@ -76,7 +77,10 @@
              :request-hand-swap
              :request-face-up-swap
              :request-move
+             :request-face-down-card
              :show-invalid-move
+             :show-face-down-fail
+             :show-face-down-win
              :show-player
              :show-game
              :show-pickup
@@ -92,6 +96,7 @@
              :deal
              :first-move
              :make-move
+             :make-face-down-move
              :add-to-pile
              :set-last-move
              :playing-from-face-down
@@ -100,10 +105,12 @@
              :can-play
              :valid-move
              :pickup
+             :pickup-with-card
              :get-current-player))
 
 (defpackage :com.boothj5.lisphead
     (:use :common-lisp
           :com.boothj5.lisphead.console
           :com.boothj5.lisphead.game
+          :com.boothj5.lisphead.hand
           :com.boothj5.lisphead.player))

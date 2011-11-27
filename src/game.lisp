@@ -69,12 +69,22 @@
               ((> (hand-size face-up) 0)
                 (face-up-move game cards)))))
 
+(defun make-face-down-move (game choice)
+    (let* ((player (get-current-player game))
+           (card (get-card (getf player :face-down) choice)))
+        (add-to-pile game (list card))
+        (remove-from-face-down player (list card))
+        (set-last-move game (list card))
+        (move-to-next-player game)))
+
 (defun valid-move (choice game)
     (let* ((player (get-current-player game))
            (hand (getf player :hand))
            (face-up (getf player :face-up))
+           (face-down (getf player :face-down))
            (cards (cond ((> (hand-size hand) 0) (get-cards-at choice hand))
-                        ((> (hand-size face-up) 0) (get-cards-at choice face-up)))))
+                        ((> (hand-size face-up) 0) (get-cards-at choice face-up))
+                        (t (get-cards-at choice face-down)))))
         (if (not (all-ranks-equal cards))
             nil
             (valid-move-on-pile (car cards) (getf game :pile)))))
@@ -111,6 +121,15 @@
         (setf (getf game :last-move)    
               (format nil "~A picked up" (getf player :player-name)))
         (move-to-next-player game)))
+
+(defun pickup-with-card (game card)
+    (let ((player (get-current-player game)))
+        (add-to-hand player card)
+        (princ "added to hand")
+        (remove-from-face-down player (list card))
+        (princ "removed from face down")
+        (pickup game)
+        (princ "picked up")))
 
 ;;; private functions
 

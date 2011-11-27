@@ -24,14 +24,27 @@
 
     (loop while (continue-game *game*) do
         (cond ((playing-from-face-down *game*)
-                    (princ "Playing from face down"))
+               (let* ((player (get-current-player *game*))
+                      (choice (request-face-down-card player)))
+                   (if (valid-move (list choice) *game*)
+                       (progn
+                           (show-face-down-win 
+                               (get-card (getf player :face-down) choice))
+                           (make-face-down-move *game* choice)
+                           (show-game *game*))
+                       (progn
+                           (show-face-down-fail
+                               (get-card (getf player :face-down) choice))
+                           (pickup-with-card *game*
+                               (get-card (getf player :face-down) choice))
+                           (show-game *game*)))))
               ((can-play *game*)
-                    (let ((choice (request-move (get-current-player *game*))))
-                        (if (valid-move choice *game*)
-                            (progn
-                                (make-move *game* choice)
-                                (show-game *game*))
-                            (show-invalid-move))))
+               (let ((choice (request-move (get-current-player *game*))))
+                   (if (valid-move choice *game*)
+                       (progn
+                           (make-move *game* choice)
+                           (show-game *game*))
+                       (show-invalid-move))))
               (t (progn
                     (show-pickup (get-current-player *game*))
                     (pickup *game*)

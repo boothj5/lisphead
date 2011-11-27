@@ -46,6 +46,10 @@
     (setf (getf player :face-up)
           (remove-cards (getf player :face-up) cards)))
 
+(defun remove-from-face-down (player cards)
+    (setf (getf player :face-down)
+          (remove-cards (getf player :face-down) cards)))
+
 (defun has-cards-in-hand (player)
     (has-cards (getf player :hand)))
 
